@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>КП-5: Облік студентів і оцінок (AJAX / JSON, Варіант 11)</title>
+    <link rel="icon" href="data:,">
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js" defer></script>
+</head>
+<body>
+    <div class="container">
+        <h1>КП-5: Облік студентів і оцінок (AJAX / JSON, Варіант 11)</h1>
+
+        <!-- Форма додавання студента через AJAX (api_add.php) -->
+        <section class="card">
+            <h2>Додати нового студента (<code>POST api_add.php</code>)</h2>
+            <div id="formMessage" class="alert" hidden></div>
+
+            <form id="addForm" class="student-form">
+                <div class="form-group">
+                    <label for="name">ПІБ студента:</label>
+                    <input
+                        type="text"
+                        id="name"
+                        name="name"
+                        required
+                        maxlength="150"
+                        placeholder="Наприклад: Іваненко Марія"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="group_name">Група:</label>
+                    <input
+                        type="text"
+                        id="group_name"
+                        name="group_name"
+                        required
+                        maxlength="30"
+                        placeholder="Наприклад: ІК-44"
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="average_grade">Середній бал (0–100):</label>
+                    <input
+                        type="number"
+                        id="average_grade"
+                        name="average_grade"
+                        required
+                        min="0"
+                        max="100"
+                        step="0.01"
+                        placeholder="Наприклад: 92.5"
+                    >
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-primary">Додати студента</button>
+                </div>
+            </form>
+        </section>
+
+        <!-- Живий пошук за назвою групи без перезавантаження (GET api_list.php?q=...) -->
+        <section class="card">
+            <h2>Живий пошук за групою (<code>GET api_list.php?q=...</code>)</h2>
+            <div class="search-box">
+                <label for="search">Назва групи (<code>group_name</code>):</label>
+                <input
+                    type="text"
+                    id="search"
+                    placeholder="Почніть вводити групу, наприклад: ІК-44 або 42"
+                    autocomplete="off"
+                >
+                <small id="searchHint" class="hint">Фільтрація виконується автоматично під час введення.</small>
+            </div>
+        </section>
+
+        <!-- Контейнер результатів: таблиця заповнюється виключно через JavaScript -->
+        <section class="card">
+            <h2>Список студентів (<code>#results</code>)</h2>
+            <div id="resultsMessage" class="alert" hidden></div>
+
+            <table id="results" class="students-table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>ПІБ студента</th>
+                        <th>Група</th>
+                        <th>Середній бал</th>
+                        <th>Дії</th>
+                    </tr>
+                </thead>
+                <tbody id="resultsBody">
+                    <!-- Рядки додаються динамічно через fetch() у script.js -->
+                </tbody>
+            </table>
+
+            <p class="summary-bar">
+                Показано записів: <strong id="totalCount">0</strong>
+            </p>
+        </section>
+    </div>
+</body>
+</html>
+
+

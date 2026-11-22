@@ -1,0 +1,252 @@
+/* Базове скидання відступів і шрифт сторінки */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f4f6f9;
+    color: #222222;
+    line-height: 1.5;
+    padding: 30px 15px;
+}
+
+/* Основний контейнер сторінки */
+.container {
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #1a252f;
+}
+
+h2 {
+    font-size: 18px;
+    margin-bottom: 14px;
+    color: #2c3e50;
+}
+
+code {
+    background-color: #eef2f6;
+    padding: 2px 6px;
+    border-radius: 4px;
+    font-size: 0.92em;
+    color: #1e3a5f;
+}
+
+/* Картки для розділення логічних блоків */
+.card {
+    background-color: #ffffff;
+    border: 1px solid #dfe4ea;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.04);
+}
+
+/* Повідомлення про помилки та успішні AJAX-операції */
+.alert {
+    padding: 12px 16px;
+    border-radius: 6px;
+    margin-bottom: 16px;
+    font-size: 14px;
+}
+
+.alert-error {
+    background-color: #fdecea;
+    border: 1px solid #f5c2c7;
+    color: #842029;
+}
+
+.alert-success {
+    background-color: #e8f5e9;
+    border: 1px solid #badbcc;
+    color: #0f5132;
+}
+
+/* Форма додавання студента */
+.student-form {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 14px;
+    align-items: flex-end;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    flex: 1 1 200px;
+}
+
+.form-group label,
+.search-box label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    color: #334155;
+}
+
+.form-group input,
+.search-box input,
+.grade-input {
+    padding: 8px 10px;
+    border: 1px solid #cbd5e1;
+    border-radius: 5px;
+    font-size: 14px;
+    background-color: #ffffff;
+    color: #222222;
+}
+
+.form-group input:focus,
+.search-box input:focus,
+.grade-input:focus {
+    outline: none;
+    border-color: #2b6cb0;
+}
+
+.form-actions {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+/* Блок живого пошуку */
+.search-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.hint {
+    margin-top: 6px;
+    font-size: 13px;
+    color: #475569;
+}
+
+/* Кнопки дій */
+.btn {
+    display: inline-block;
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    line-height: 1.2;
+}
+
+.btn-primary {
+    background-color: #2b6cb0;
+    color: #ffffff;
+}
+
+.btn-primary:hover {
+    background-color: #22548a;
+}
+
+.btn-edit {
+    background-color: #fef3c7;
+    color: #92400e;
+    border: 1px solid #fcd34d;
+    padding: 5px 10px;
+    font-size: 13px;
+}
+
+.btn-edit:hover {
+    background-color: #fde68a;
+}
+
+.btn-save {
+    background-color: #dcfce7;
+    color: #166534;
+    border: 1px solid #86efac;
+    padding: 5px 10px;
+    font-size: 13px;
+}
+
+.btn-save:hover {
+    background-color: #bbf7d0;
+}
+
+.btn-cancel {
+    background-color: #e2e8f0;
+    color: #334155;
+    border: 1px solid #cbd5e1;
+    padding: 5px 10px;
+    font-size: 13px;
+}
+
+.btn-cancel:hover {
+    background-color: #cbd5e1;
+}
+
+/* Таблиця студентів */
+.students-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+}
+
+.students-table th,
+.students-table td {
+    padding: 10px 12px;
+    border-bottom: 1px solid #e2e8f0;
+    text-align: left;
+    vertical-align: middle;
+}
+
+.students-table th {
+    background-color: #f1f5f9;
+    font-weight: 600;
+    color: #334155;
+}
+
+/* Комірка середнього балу та поле inline-редагування */
+.grade-cell {
+    white-space: nowrap;
+}
+
+.grade-input {
+    width: 95px;
+    padding: 4px 8px;
+}
+
+.grade-updated {
+    background-color: #dcfce7;
+    transition: background-color 0.6s ease;
+}
+
+/* Стовпець кнопок дій (без display: flex на <td>, щоб нижня межа рядка була рівною) */
+.actions-cell {
+    white-space: nowrap;
+}
+
+.actions-cell .btn + .btn {
+    margin-left: 6px;
+}
+
+/* Службові рядки всередині таблиці (порожній стан / помилка мережі) */
+.status-cell {
+    text-align: center;
+    color: #475569;
+    padding: 16px;
+}
+
+.status-cell-error {
+    color: #842029;
+    background-color: #fdecea;
+    font-weight: 600;
+}
+
+/* Підсумковий рядок під таблицею */
+.summary-bar {
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid #e2e8f0;
+    font-size: 15px;
+    color: #1a252f;
+}
