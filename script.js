@@ -275,31 +275,15 @@ addForm.addEventListener('submit', async function (event) {
         }
 
         const createdStudent = await response.json();
-        const activeFilter = searchInput.value.trim().toLowerCase();
-        const matchesFilter = activeFilter === ''
-            || createdStudent.group_name.toLowerCase().includes(activeFilter);
 
-        if (matchesFilter) {
-            // Якщо в таблиці був рядок порожнього стану чи помилки — очищаємо його
-            if (resultsBody.querySelector('.status-cell')) {
-                resultsBody.textContent = '';
-            }
+        // Повторно завантажуємо список із урахуванням поточного пошуку
+        await loadStudents(searchInput.value.trim());
 
-            resultsBody.appendChild(createStudentRow(createdStudent));
-            totalCount.textContent = String(resultsBody.querySelectorAll('tr').length);
-
-            showAlert(
-                formMessage,
-                'Студента «' + createdStudent.name + '» успішно додано (ID: ' + createdStudent.id + ').',
-                'success'
-            );
-        } else {
-            showAlert(
-                formMessage,
-                'Студента «' + createdStudent.name + '» додано (ID: ' + createdStudent.id + '), але запис прихований активним фільтром пошуку.',
-                'success'
-            );
-        }
+        showAlert(
+            formMessage,
+            'Студента «' + createdStudent.name + '» успішно додано (ID: ' + createdStudent.id + ').',
+            'success'
+        );
 
         addForm.reset();
     } catch (error) {

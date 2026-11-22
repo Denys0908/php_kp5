@@ -26,18 +26,18 @@ $groupName = trim((string) ($input['group_name'] ?? ''));
 $gradeRaw = trim((string) ($input['average_grade'] ?? ''));
 $normalizedGrade = str_replace(',', '.', $gradeRaw);
 
-// Серверна валідація без залежності від розширення mbstring
+// Серверна валідація вхідних даних
 $errors = [];
 
 if ($name === '') {
     $errors[] = 'Введіть ПІБ студента.';
-} elseif (preg_match_all('/./u', $name) > 150) {
+} elseif (mb_strlen($name, 'UTF-8') > 150) {
     $errors[] = 'ПІБ студента не може перевищувати 150 символів.';
 }
 
 if ($groupName === '') {
     $errors[] = 'Введіть назву групи.';
-} elseif (preg_match_all('/./u', $groupName) > 30) {
+} elseif (mb_strlen($groupName, 'UTF-8') > 30) {
     $errors[] = 'Назва групи не може перевищувати 30 символів.';
 }
 
